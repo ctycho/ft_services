@@ -1,0 +1,29 @@
+Команды для сервайса
+mkdir -p ~/goinfre/docker
+rm -rf ~/Library/Containers/com.docker.docker
+ln -s ~/goinfre/docker ~/Library/Containers/com.docker.docker
+
+docker login
+Username
+Password
+
+Установка мини куба
+
+команда brew install minikube
+
+mv .minikube ./goinfre
+ln -s ./goinfre/.minikube .minikube
+
+minikube start --vm-driver=virtualbox 
+
+eval $(minikube docker-env) переключает докер на работу внутри кластера
+
+minikube addons enable metallb подлючить металлб
+
+
+kubectl describe pods nginx посмотреть лог ошибок
+
+
+kubectl delete -f .
+docker build -t nginx_image .
+kubectl apply -f configmap.yaml
