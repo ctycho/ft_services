@@ -1,5 +1,7 @@
 
 kubectl delete deployments --all
+kubectl delete pods --all
+kubectl delete svc --all
 
 eval $(minikube docker-env)
 minikube addons enable metallb

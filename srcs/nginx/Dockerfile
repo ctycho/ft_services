@@ -6,7 +6,7 @@
 #    By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/14 15:50:21 by ctycho            #+#    #+#              #
-#    Updated: 2021/04/18 13:09:42 by ctycho           ###   ########.fr        #
+#    Updated: 2021/04/24 01:37:41 by ctycho           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,6 @@ RUN		mkdir -p /run/nginx
 RUN		mkdir -p /etc/ssl
 RUN		mkdir -p /var/log/nginx
 RUN		mkdir -p /www
-#RUN		ssh-keygen -A && adduser -D ctycho && echo "ctycho:123" | chpasswd
 
 COPY	./srcs/script-start.sh /etc/ssl/
 COPY	./srcs/default.conf				/etc/nginx/conf.d/default.conf
