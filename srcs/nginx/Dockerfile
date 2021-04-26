@@ -6,20 +6,22 @@
 #    By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/14 15:50:21 by ctycho            #+#    #+#              #
-#    Updated: 2021/04/24 01:37:41 by ctycho           ###   ########.fr        #
+#    Updated: 2021/04/25 05:12:45 by ctycho           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FROM	alpine:3.12
 RUN		apk update
 RUN		apk upgrade
-RUN		apk add nginx openssl supervisor openssh
+RUN		apk add nginx openssl supervisor openssh \
+		telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache
 
 RUN		mkdir -p /run/nginx
 RUN		mkdir -p /etc/ssl
 RUN		mkdir -p /var/log/nginx
 RUN		mkdir -p /www
 
+COPY	./srcs/telegraf.conf		/etc/
 COPY	./srcs/script-start.sh /etc/ssl/
 COPY	./srcs/default.conf				/etc/nginx/conf.d/default.conf
 COPY	./srcs/supervisord.conf			/etc/supervisord.conf

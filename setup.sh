@@ -2,8 +2,7 @@
 
 minikube stop
 minikube delete
-# minikube start --vm-driver=virtualbox --memory=6144mb
-minikube --vm-driver=virtualbox start
+minikube start --vm-driver=virtualbox --cpus=4 --memory=4G --disk-size=50G
 eval $(minikube docker-env)
 minikube addons enable metallb
 

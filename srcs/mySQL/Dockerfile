@@ -6,20 +6,23 @@
 #    By: ctycho <ctycho@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/04/17 21:44:50 by ctycho            #+#    #+#              #
-#    Updated: 2021/04/18 17:08:01 by ctycho           ###   ########.fr        #
+#    Updated: 2021/04/26 16:39:57 by ctycho           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FROM	alpine:3.12
+
 RUN		apk update
 RUN		apk upgrade
-RUN		apk add mysql mysql-client openrc mariadb
+RUN		apk add mysql mysql-client openrc mariadb mariadb-client supervisor \
+		telegraf --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted --no-cache && \
+		mkdir -p /run/mysqld/
 
-
-COPY	./srcs/my.cnf /etc/mysql
+COPY	./srcs/telegraf.conf		/etc/
+COPY	./srcs/supervisord.conf		/etc/supervisord.conf
+COPY	./srcs/mydb.sql				./
+COPY	./srcs/my.cnf				/etc/
 COPY	./srcs/mysql_script.sh		/
-RUN		chmod +x mysql_script.sh
-
 
 EXPOSE	3306
 
